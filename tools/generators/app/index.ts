@@ -1,4 +1,6 @@
-import { convertNxGenerator, formatFiles, Tree } from '@nrwl/devkit';
+import { formatFiles, Tree } from '@nrwl/devkit';
+import { nextInitGenerator } from '@nrwl/next/src/generators/init/init';
+import { addStyleDependencies } from '@nrwl/next/src/utils/styles';
 
 import { normalizeOptions } from './lib/normalize-options';
 import { Schema } from './schema';
@@ -9,8 +11,6 @@ import { createApplicationFiles } from './lib/create-application-files';
 import { createNextServerFiles } from './lib/create-next-server-files';
 import { setDefaults } from './lib/set-defaults';
 import { updateJestConfig } from './lib/update-jest-config';
-import { nextInitGenerator } from '../init/init';
-import { addStyleDependencies } from '../../utils/styles';
 import { addLinting } from './lib/add-linting';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 
@@ -44,4 +44,4 @@ export async function applicationGenerator(host: Tree, schema: Schema) {
   );
 }
 
-export const applicationSchematic = convertNxGenerator(applicationGenerator);
+export default applicationGenerator;
